@@ -8,7 +8,7 @@
 
 <ion-content [fullscreen]="true">
     <ion-list>
-      <ion-item ion-item *ngFor="let song of songs"> 
+      <ion-item ion-item  button  routerDirection="forward" *ngFor="let song of songs" (click)="detailsPage(song)"> 
           {{song.title}} - {{song.artist.name}} - {{song.duration}}
       </ion-item>  
     </ion-list>

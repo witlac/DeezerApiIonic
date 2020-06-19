@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import {DeezzerServiceService} from '../service/deezzer-service.service';
+import {DeezzerServiceService} from '../services/deezzer-service.service';
+import { NavController } from '@ionic/angular';
+import { SendSongService } from '../services/send-song.service';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
-  constructor(public deezer: DeezzerServiceService) {
+  details="DetailsPage";
+  constructor(public deezer: DeezzerServiceService, private navCtrl: NavController,public songService: SendSongService) {
     
   }
 
@@ -19,10 +21,14 @@ export class HomePage {
       (datas)=>{
         this.playlist=datas;
         this.songs = this.playlist.tracks.data;
-        console.log(this.songs);
       },
       )
         
+  }
+
+  detailsPage(song){
+    this.songService.sendObjectSource(song);
+    this.navCtrl.navigateForward('/details/songs')
   }
 
 }
